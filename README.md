@@ -7,6 +7,13 @@
 
 Delightful Swift snapshot testing.
 
+>[!NOTE]
+>This package is a fork of [swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) with additional traits for opt-in features, making it more _composable_. Upstream is merged sporadically.
+>
+>### Why does this fork exist?
+>
+>[Point-Free](https://www.pointfree.co) make good software and tools, but often their packages come with dependencies on the rest of the Point-Free ecosystem for entirely optional behaviour. So even if you don't want or need those dependencies, you have them anyway. Wrapping optional behaviour in traits is easy, but unfortunately there are bugs in Xcode (up to and including 26.0) and it doesn't respect default enabled traits. So were Point-Free to accept a PR with these traits it would be a backwards-incompatible change as far as Xcode is concerned, hence this fork.
+
 ## Usage
 
 Once [installed](#installation), _no additional configuration is required_. You can import the

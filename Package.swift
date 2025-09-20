@@ -46,7 +46,6 @@ let package = Package(
       name: "InlineSnapshotTesting",
       dependencies: [
         "SnapshotTesting",
-        "SnapshotTestingCustomDump",
         .product(name: "SwiftParser", package: "swift-syntax"),
         .product(name: "SwiftSyntax", package: "swift-syntax"),
         .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
@@ -56,6 +55,7 @@ let package = Package(
       name: "InlineSnapshotTestingTests",
       dependencies: [
         "InlineSnapshotTesting"
+        "SnapshotTestingCustomDump",
       ]
     ),
     .target(

@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:6.1
 
 import PackageDescription
 
@@ -22,6 +22,12 @@ let package = Package(
     .library(
       name: "SnapshotTestingCustomDump",
       targets: ["SnapshotTestingCustomDump"]
+    ),
+  ],
+  traits: [
+    .trait(
+      name: "SnapshotTestingCustomDump",
+      description: "Include swift-custom-dump support with the `SnapshotTestingCustomDump` library."
     ),
   ],
   dependencies: [
@@ -54,15 +60,16 @@ let package = Package(
     .testTarget(
       name: "InlineSnapshotTestingTests",
       dependencies: [
-        "InlineSnapshotTesting"
-        "SnapshotTestingCustomDump",
+        "InlineSnapshotTesting",
+        .target(name: "SnapshotTestingCustomDump"),     // trait condition here doesn't work for some reason
+        .product(name: "CustomDump", package: "swift-custom-dump", condition: .when(traits: ["SnapshotTestingCustomDump"])),
       ]
     ),
     .target(
       name: "SnapshotTestingCustomDump",
       dependencies: [
         "SnapshotTesting",
-        .product(name: "CustomDump", package: "swift-custom-dump"),
+        .product(name: "CustomDump", package: "swift-custom-dump", condition: .when(traits: ["SnapshotTestingCustomDump"])),
       ]
     ),
   ],
